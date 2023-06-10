@@ -39,7 +39,7 @@ b:Label("4 = Jiggy Moves",{
     
 }) 
 
-b:Label("5 = JiggyMovesBlatant",{
+b:Label("5 = JiggyBlatant",{
     TextSize = 25;
     TextColor = Color3.fromRGB(255,255,255);
     BgColor = Color3.fromRGB(69,69,69);
@@ -328,7 +328,7 @@ end)
 
 -------------------------------------------------------------------------
 
-_G.Keybind5 = Enum.KeyCode.Five
+_G.Keybind6 = Enum.KeyCode.Five
 
 local UIS = game:GetService("UserInputService")
 local LocalPlayer = game:GetService("Players").LocalPlayer
@@ -424,14 +424,14 @@ end
 end
 
 UIS.InputBegan:Connect(function(input, proc)
-    if input.KeyCode == _G.Keybind5 and not proc then
+    if input.KeyCode == _G.Keybind6 and not proc then
         Moving = true
         autoMoves()
     end
 end)
 
 UIS.InputEnded:Connect(function(input, proc)
-    if input.KeyCode == _G.Keybind5 and not proc then
+    if input.KeyCode == _G.Keybind6 and not proc then
         Moving = false
     end
 end)
