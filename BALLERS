@@ -169,14 +169,14 @@ local function tpBall()
     end
 end
 
-UIS.InputBegan:Connect(function(input)
-    if input.KeyCode == _G.Keybind3 then
+UIS.InputBegan:Connect(function(input, proc)
+    if input.KeyCode == _G.Keybind3 and not proc then
         tpBall()
     end
 end)
 
-UIS.InputEnded:Connect(function(input)
-    if input.KeyCode == _G.Keybind3 then
+UIS.InputEnded:Connect(function(input, proc)
+    if input.KeyCode == _G.Keybind3 and not proc then
     end
 end)
 
@@ -204,15 +204,15 @@ local function guard()
     end
 end
 
-UIS.InputBegan:Connect(function(input)
-    if input.KeyCode == _G.Keybind4 then
+UIS.InputBegan:Connect(function(input, proc)
+    if input.KeyCode == _G.Keybind4 and not proc then
         Guarding = true
         guard()
     end
 end)
 
-UIS.InputEnded:Connect(function(input)
-    if input.KeyCode == _G.Keybind4 then
+UIS.InputEnded:Connect(function(input, proc)
+    if input.KeyCode == _G.Keybind4 and not proc then
         Guarding = false
     end
 end)
@@ -313,15 +313,15 @@ end
     end
 end
 
-UIS.InputBegan:Connect(function(input)
-    if input.KeyCode == _G.Keybind5 then
+UIS.InputBegan:Connect(function(input, proc)
+    if input.KeyCode == _G.Keybind5 and not proc then
         Moving = true
         autoMoves()
     end
 end)
 
-UIS.InputEnded:Connect(function(input)
-    if input.KeyCode == _G.Keybind5 then
+UIS.InputEnded:Connect(function(input, proc)
+    if input.KeyCode == _G.Keybind5 and not proc then
         Moving = false
     end
 end)
