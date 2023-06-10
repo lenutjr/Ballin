@@ -15,7 +15,7 @@ TextLabel.Parent = Frame
 TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel.Size = UDim2.new(0, 457, 0, 50)
 TextLabel.Font = Enum.Font.SourceSans
-TextLabel.Text = "E = Aimbot | Hold Shift = INF Stamina | Q = Teleport to Ball | G = Auto Guard | 4 = Create Space"
+TextLabel.Text = "E = Aimbot | Hold Shift = INF Stamina | Q = Teleport to Ball | G = Auto Guard | 5 = Create Space"
 TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
 TextLabel.TextSize = 14.000
 TextLabel.TextWrapped = true
@@ -220,6 +220,12 @@ local function autoMoves()
             [1] = Enum.KeyCode.C,
             [2] = Enum.KeyCode.X,
             [3] = Enum.KeyCode.Z
+        })
+        task.wait(0.5)
+        
+        game:GetService("ReplicatedStorage").Remotes.Dribble:FireServer({
+            [1] = Enum.KeyCode.X,
+            [2] = Enum.KeyCode.X
         })
     end
 end
