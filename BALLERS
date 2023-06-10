@@ -293,7 +293,14 @@ local function autoMoves()
         game:GetService("ReplicatedStorage").Remotes.Dribble:FireServer({
             [1] = Enum.KeyCode.C
         })
+        task.wait(0.5)
+        
+        game:GetService("ReplicatedStorage").Remotes.Dribble:FireServer({
+            [1] = Enum.KeyCode.X
+        })
         game:GetService("VirtualInputManager"):SendKeyEvent(true,"E",false,game)
+        task.wait(0.5)
+        game:GetService("VirtualInputManager"):SendKeyEvent(false,"E",true,game)
     end
 end
 
