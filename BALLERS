@@ -308,6 +308,8 @@ end
         task.wait(0.3)
         
         game:GetService("VirtualInputManager"):SendKeyEvent(true,"E",false,game)
+	task.wait(1)
+	game:GetService("VirtualInputManager"):SendKeyEvent(false,"E",false,game)
     end
 end
 
