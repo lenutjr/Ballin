@@ -165,13 +165,19 @@ local ohTable1 = {
 game:GetService("ReplicatedStorage").Remotes.Dribble:FireServer(ohTable1)
 task.wait(0.5)
 local ohTable1 = {
-	[1] = Enum.KeyCode.X
+	[1] = Enum.KeyCode.C
 }
 
 game:GetService("ReplicatedStorage").Remotes.Dribble:FireServer(ohTable1)
 task.wait(0.5)
 local ohTable1 = {
 	[1] = Enum.KeyCode.C
+}
+
+game:GetService("ReplicatedStorage").Remotes.Dribble:FireServer(ohTable1)
+task.wait(0.5)
+local ohTable1 = {
+	[1] = Enum.KeyCode.Z
 }
 
 game:GetService("ReplicatedStorage").Remotes.Dribble:FireServer(ohTable1)
