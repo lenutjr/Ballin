@@ -197,6 +197,7 @@ local function guard()
                     LocalPlayer.Character.HumanoidRootPart.CFrame = ball.CFrame
                     game:GetService("ReplicatedStorage").Remotes.Guard:FireServer(true)
                     game:GetService("ReplicatedStorage").Remotes.Post:FireServer(true)
+                    game:GetService("ReplicatedStorage").Remotes.Steal:FireServer()
                 end
             end
         end
