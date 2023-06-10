@@ -32,7 +32,14 @@ b:Label("G = Auto Guard (Buggy)",{
     
 }) 
 
-b:Label("5 = Jiggy Moves",{
+b:Label("4 = Jiggy Moves",{
+    TextSize = 25;
+    TextColor = Color3.fromRGB(255,255,255);
+    BgColor = Color3.fromRGB(69,69,69);
+    
+}) 
+
+b:Label("5 = JiggyMovesBlatant",{
     TextSize = 25;
     TextColor = Color3.fromRGB(255,255,255);
     BgColor = Color3.fromRGB(69,69,69);
@@ -218,6 +225,109 @@ UIS.InputEnded:Connect(function(input, proc)
 end)
 
 ---------------------------------------------------------------------------
+_G.Keybind5 = Enum.KeyCode.Four
+
+local UIS = game:GetService("UserInputService")
+local LocalPlayer = game:GetService("Players").LocalPlayer
+local Moving = false
+
+local function autoMoves()
+    while task.wait() and Moving do
+        game:GetService("ReplicatedStorage").Remotes.Dribble:FireServer({
+            [1] = Enum.KeyCode.C,
+            [2] = Enum.KeyCode.X,
+            [3] = Enum.KeyCode.Z
+        })
+        task.wait(0.5)
+
+        game:GetService("ReplicatedStorage").Remotes.Dribble:FireServer({
+            [1] = Enum.KeyCode.Z,
+            [2] = Enum.KeyCode.X,
+            [3] = Enum.KeyCode.C
+        })
+        task.wait(0.5)
+
+        game:GetService("ReplicatedStorage").Remotes.Dribble:FireServer({
+            [1] = Enum.KeyCode.C,
+            [2] = Enum.KeyCode.X
+        })
+        task.wait(0.5)
+
+        game:GetService("ReplicatedStorage").Remotes.Dribble:FireServer({
+            [1] = Enum.KeyCode.Z,
+            [2] = Enum.KeyCode.X
+        })
+        task.wait(0.5)
+
+        game:GetService("ReplicatedStorage").Remotes.Dribble:FireServer({
+            [1] = Enum.KeyCode.X,
+            [2] = Enum.KeyCode.X
+        })
+        task.wait(0.5)
+
+        game:GetService("ReplicatedStorage").Remotes.Dribble:FireServer({
+            [1] = Enum.KeyCode.Z,
+            [2] = Enum.KeyCode.X
+        })
+        task.wait(0.5)
+
+        game:GetService("ReplicatedStorage").Remotes.Dribble:FireServer({
+            [1] = Enum.KeyCode.C,
+            [2] = Enum.KeyCode.X,
+            [3] = Enum.KeyCode.Z
+        })
+        task.wait(0.5)
+        
+        game:GetService("ReplicatedStorage").Remotes.Dribble:FireServer({
+            [1] = Enum.KeyCode.Z
+        })
+        task.wait(0.5)
+
+        game:GetService("ReplicatedStorage").Remotes.Dribble:FireServer({
+            [1] = Enum.KeyCode.Z,
+            [2] = Enum.KeyCode.X,
+            [3] = Enum.KeyCode.C
+        })
+        task.wait(0.5)
+
+        game:GetService("ReplicatedStorage").Remotes.Dribble:FireServer({
+            [1] = Enum.KeyCode.C,
+            [2] = Enum.KeyCode.X,
+            [3] = Enum.KeyCode.Z
+        })
+        task.wait(0.5)
+        
+        game:GetService("ReplicatedStorage").Remotes.Dribble:FireServer({
+            [1] = Enum.KeyCode.C
+        })
+        task.wait(0.5)
+        
+        game:GetService("ReplicatedStorage").Remotes.Dribble:FireServer({
+            [1] = Enum.KeyCode.X
+        })
+        task.wait(0.5)
+        
+        game:GetService("VirtualInputManager"):SendKeyEvent(true,"E",false,game)
+	task.wait(1)
+	game:GetService("VirtualInputManager"):SendKeyEvent(false,"E",false,game)
+    end
+end
+
+UIS.InputBegan:Connect(function(input, proc)
+    if input.KeyCode == _G.Keybind5 and not proc then
+        Moving = true
+        autoMoves()
+    end
+end)
+
+UIS.InputEnded:Connect(function(input, proc)
+    if input.KeyCode == _G.Keybind5 and not proc then
+        Moving = false
+    end
+end)
+
+-------------------------------------------------------------------------
+
 _G.Keybind5 = Enum.KeyCode.Five
 
 local UIS = game:GetService("UserInputService")
