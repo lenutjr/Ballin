@@ -156,41 +156,86 @@ _G.Keybind5 = Enum.KeyCode.Four
 
 local UIS = game:GetService("UserInputService")
 local LocalPlayer = game:GetService("Players").LocalPlayer
+local Moving = false
 
 local function autoMoves()
+while task.wait() and Moving do
 local ohTable1 = {
-	[1] = Enum.KeyCode.Z
+	[1] = Enum.KeyCode.C,
+	[2] = Enum.KeyCode.X,
+	[3] = Enum.KeyCode.Z
 }
 
 game:GetService("ReplicatedStorage").Remotes.Dribble:FireServer(ohTable1)
 task.wait(0.5)
 local ohTable1 = {
-	[1] = Enum.KeyCode.C
+	[1] = Enum.KeyCode.Z,
+	[2] = Enum.KeyCode.X,
+	[3] = Enum.KeyCode.C
 }
 
 game:GetService("ReplicatedStorage").Remotes.Dribble:FireServer(ohTable1)
 task.wait(0.5)
 local ohTable1 = {
-	[1] = Enum.KeyCode.C
+	[1] = Enum.KeyCode.C,
+	[2] = Enum.KeyCode.X
 }
 
 game:GetService("ReplicatedStorage").Remotes.Dribble:FireServer(ohTable1)
 task.wait(0.5)
 local ohTable1 = {
-	[1] = Enum.KeyCode.Z
+	[1] = Enum.KeyCode.Z,
+	[2] = Enum.KeyCode.X
 }
 
 game:GetService("ReplicatedStorage").Remotes.Dribble:FireServer(ohTable1)
 task.wait(0.5)
+local ohTable1 = {
+	[1] = Enum.KeyCode.X,
+	[2] = Enum.KeyCode.X
+}
+
+game:GetService("ReplicatedStorage").Remotes.Dribble:FireServer(ohTable1)
+task.wait(0.5)
+local ohTable1 = {
+	[1] = Enum.KeyCode.Z,
+	[2] = Enum.KeyCode.X
+}
+
+game:GetService("ReplicatedStorage").Remotes.Dribble:FireServer(ohTable1)
+task.wait(0.5)
+local ohTable1 = {
+	[1] = Enum.KeyCode.C,
+	[2] = Enum.KeyCode.X,
+	[3] = Enum.KeyCode.Z
+}
+
+game:GetService("ReplicatedStorage").Remotes.Dribble:FireServer(ohTable1)
+task.wait(0.5)
+local ohTable1 = {
+	[1] = Enum.KeyCode.X,
+	[2] = Enum.KeyCode.X
+}
+
+game:GetService("ReplicatedStorage").Remotes.Dribble:FireServer(ohTable1)
+task.wait(0.5)
+local ohTable1 = {
+	[1] = Enum.KeyCode.X
+}
+
+game:GetService("ReplicatedStorage").Remotes.Dribble:FireServer(ohTable1)
+	end
 end
 
 UIS.InputBegan:Connect(function(input)
 	if input.KeyCode == _G.Keybind5 then
+		Moving = true
 		autoMoves()
 	end
 end)
 
 UIS.InputEnded:Connect(function(input)
 	if input.KeyCode == _G.Keybind5 then
+		Moving = false
 	end
 end)
