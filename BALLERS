@@ -47,7 +47,7 @@ b:DestroyGui()
 
 ---------------------------------------------------------------------------
 
-local function bypassBorderandBounds()
+function bypassBorderandBounds()
     for _, borders in pairs(game:GetService("Workspace"):GetDescendants()) do
         if borders.Name == "CourtBorders" and borders:isA("Model") then
             borders:Destroy()
