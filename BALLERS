@@ -25,7 +25,7 @@ b:Label("Q = TP to Ball",{
     
 }) 
 
-b:Label("G = Auto Guard (Buggy for Some)",{
+b:Label("G = Auto Guard (Buggy)",{
     TextSize = 25;
     TextColor = Color3.fromRGB(255,255,255);
     BgColor = Color3.fromRGB(69,69,69);
