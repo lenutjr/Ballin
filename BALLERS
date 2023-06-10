@@ -298,10 +298,11 @@ local function autoMoves()
         game:GetService("ReplicatedStorage").Remotes.Dribble:FireServer({
             [1] = Enum.KeyCode.X
         })
-        
+        task.wait(0.5)
+	
         for _, tp in pairs(game:GetService("Workspace"):GetDescendants()) do
 	if tp.Name == "p3" and tp:isA("Part") then
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = tp.CFrame + Vector3.new(5,-5,-15)
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = tp.CFrame + Vector3.new(5,30,-15)
 	end
 end
         task.wait(0.3)
