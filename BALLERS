@@ -299,8 +299,6 @@ local function autoMoves()
             [1] = Enum.KeyCode.X
         })
         game:GetService("VirtualInputManager"):SendKeyEvent(true,"E",false,game)
-        task.wait(0.5)
-        game:GetService("VirtualInputManager"):SendKeyEvent(false,"E",true,game)
     end
 end
 
