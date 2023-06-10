@@ -174,3 +174,42 @@ UIS.InputEnded:Connect(function(input)
         Guarding = false
     end
 end)
+
+---------------------------------------------------------------------------
+
+_G.Keybind5 = Enum.KeyCode.Four
+
+local UIS = game:GetService("UserInputService")
+local LocalPlayer = game:GetService("Players").LocalPlayer
+
+local function autoMoves()
+local ohTable1 = {
+	[1] = Enum.KeyCode.Z
+}
+
+game:GetService("ReplicatedStorage").Remotes.Dribble:FireServer(ohTable1)
+task.wait(0.5)
+local ohTable1 = {
+	[1] = Enum.KeyCode.X
+}
+
+game:GetService("ReplicatedStorage").Remotes.Dribble:FireServer(ohTable1)
+task.wait(0.5)
+local ohTable1 = {
+	[1] = Enum.KeyCode.C
+}
+
+game:GetService("ReplicatedStorage").Remotes.Dribble:FireServer(ohTable1)
+task.wait(0.5)
+end
+
+UIS.InputBegan:Connect(function(input)
+	if input.KeyCode == _G.Keybind5 then
+		autoMoves()
+	end
+end)
+
+UIS.InputEnded:Connect(function(input)
+	if input.KeyCode == _G.Keybind5 then
+	end
+end)
