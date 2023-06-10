@@ -73,28 +73,6 @@ local UIS = game:GetService("UserInputService")
 local RUN = game:GetService("RunService")
 local Character = Player.Character or Player.CharacterAdded:Wait()
 local Cheat
-local Smack = {
-        "Sit.",
-        "Wet Like Watta",
-        "U Must play for the WNBA",
-        "Money Shot!",
-        "Kobeeeee",
-        "You Play Like a Vegetable",
-        "dayum you doodadoo",
-        "Green!"
-}
-
-local SmackIndex = 1
-math.randomseed(os.time())
-
-local function shuffle(t)
-    for i = #t, 2, -1 do
-        local j = math.random(i)
-        t[i], t[j] = t[j], t[i]
-    end
-end
-
-shuffle(Smack)
 
 local ShotBot = function()
     Character.Meter.SurfaceGui.ImageLabel.Shoot.Size = UDim2.new(1, 0, 1, 0)
@@ -103,13 +81,6 @@ end
 UIS.InputBegan:Connect(function(input, proc)
     if input.KeyCode == _G.Keybind1 and not proc then
         Cheat = RUN.Stepped:Connect(ShotBot)
-        local SmackMessage = Smack[SmackIndex]
-        game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(SmackMessage, "All")
-        SmackIndex = SmackIndex + 1
-        if SmackIndex > #Smack then
-            shuffle(Smack)
-            SmackIndex = 1
-        end
     end
 end)
 
