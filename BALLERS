@@ -68,14 +68,18 @@ function bypassBorderandBounds()
     end
 end
 
-function bypassStealandBlock()
-for _, fuhriley in pairs(game:GetService("Workspace"):GetDescendants()) do
-	if fuhriley.Name == "Blockable" and fuhriley:isA("BoolValue") then
-		fuhriley.Value = false
-	elseif fuhriley.Name == "Stealable" and fuhriley:isA("BoolValue") then
-		fuhriley.Value = false
-		end
-	end
+function bypassStealAndBlock()
+    for _, item in pairs(game:GetService("Workspace"):GetDescendants()) do
+        if item.Name == "Blockable" or item.Name == "Stealable" then
+            if item:IsA("BoolValue") then
+                -- Assuming the parent of the BoolValue contains the player's name
+                local playerValue = item.Parent:FindFirstChild("player")
+                if playerValue and playerValue.Value == game.Players.LocalPlayer.Name then
+                    item.Value = false
+                end
+            end
+        end
+    end
 end
 
 ---------------------------------------------------------------------------
