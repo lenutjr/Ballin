@@ -50,6 +50,10 @@ b:Button("Bypass OutOfBound",function()
     bypassBorderandBounds()
 end)
 
+b:Button("Bypass Steal/Block",function()
+    bypassStealandBlock()
+end)
+
 b:DestroyGui()
 
 ---------------------------------------------------------------------------
@@ -62,6 +66,16 @@ function bypassBorderandBounds()
             borders:Destroy()
         end
     end
+end
+
+function bypassStealandBlock()
+for _, fuhriley in pairs(game:GetService("Workspace"):GetDescendants()) do
+	if fuhriley.Name == "Blockable" and fuhriley:isA("BoolValue") then
+		fuhriley.Value = false
+	elseif fuhriley.Name == "Stealable" and fuhriley:isA("BoolValue") then
+		fuhriley.Value = false
+		end
+	end
 end
 
 ---------------------------------------------------------------------------
