@@ -147,23 +147,34 @@ local UIS = game:GetService("UserInputService")
 local oldCFrame
 
 local function tpBall()
+    local closestBall = nil
+    local shortestDistance = math.huge
+
     for _, ball in pairs(game:GetService("Workspace"):GetDescendants()) do
         if ball.Name == "Basketball" and ball:IsA("Part") then
             local playerValue = ball:FindFirstChild("player")
             if playerValue and playerValue:IsA("StringValue") and playerValue.Value == "" then
-                oldCFrame = LocalPlayer.Character.HumanoidRootPart.CFrame
-                LocalPlayer.Character.Humanoid.PlatformStand = true
-                LocalPlayer.Character.HumanoidRootPart.CFrame = ball.CFrame + Vector3.new(0,3,1)
-                task.wait(0.1)
-                LocalPlayer.Character.HumanoidRootPart.CFrame = ball.CFrame + Vector3.new(0,3,0)
-                task.wait(0.1)
-                LocalPlayer.Character.HumanoidRootPart.CFrame = ball.CFrame + Vector3.new(0,3,-1)
-                task.wait(0.3)
-                LocalPlayer.Character.HumanoidRootPart.CFrame = oldCFrame
-                task.wait(0.1)
-                LocalPlayer.Character.Humanoid.PlatformStand = false
+                local distance = (LocalPlayer.Character.HumanoidRootPart.Position - ball.Position).magnitude
+                if distance < shortestDistance then
+                    closestBall = ball
+                    shortestDistance = distance
+                end
             end
         end
+    end
+
+    if closestBall then
+        oldCFrame = LocalPlayer.Character.HumanoidRootPart.CFrame
+        LocalPlayer.Character.Humanoid.PlatformStand = true
+        LocalPlayer.Character.HumanoidRootPart.CFrame = closestBall.CFrame + Vector3.new(0,3,1)
+        task.wait(0.1)
+        LocalPlayer.Character.HumanoidRootPart.CFrame = closestBall.CFrame + Vector3.new(0,3,0)
+        task.wait(0.1)
+        LocalPlayer.Character.HumanoidRootPart.CFrame = closestBall.CFrame + Vector3.new(0,3,-1)
+        task.wait(0.3)
+        LocalPlayer.Character.HumanoidRootPart.CFrame = oldCFrame
+        task.wait(0.1)
+        LocalPlayer.Character.Humanoid.PlatformStand = false
     end
 end
 
