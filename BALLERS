@@ -50,10 +50,6 @@ b:Button("Bypass OutOfBound",function()
     bypassBorderandBounds()
 end)
 
-b:Button("Bypass Steal/Block",function()
-    bypassStealandBlock()
-end)
-
 b:DestroyGui()
 
 ---------------------------------------------------------------------------
