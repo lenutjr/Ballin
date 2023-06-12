@@ -67,6 +67,13 @@ b:Label("B = OP Platform",{
     
 }) 
 
+b:Label("Y-Toggle = Spin",{
+    TextSize = 20;
+    TextColor = Color3.fromRGB(255,255,255);
+    BgColor = Color3.fromRGB(69,69,69);
+    
+}) 
+
 b:Button("Bypass OutOfBound",function()
     bypassBorderandBounds()
 end)
@@ -546,4 +553,46 @@ UIS.InputBegan:Connect(function(input, proc)
 	if input.KeyCode == _G.Keybind9 and not proc then
 	createPart()
 	end
+end)
+
+-------------------------------------------------------------------
+
+_G.Keybind10 = Enum.KeyCode.Y
+
+local UIS = game:GetService("UserInputService")
+local Player = game:GetService("Players").LocalPlayer
+local Camera = game:GetService("Workspace").CurrentCamera
+local spinSpeed = math.rad(100)
+local Spinning = false
+
+local spinPart = Instance.new("Part")
+spinPart.Anchored = true
+spinPart.CanCollide = false
+spinPart.Transparency = 1
+spinPart.Parent = workspace
+
+local oldCameraSubject = Camera.CameraSubject
+
+function spinPlayer()
+    while Spinning do
+        spinPart.CFrame = spinPart.CFrame * CFrame.Angles(0, spinSpeed, 0)
+        local relativeCFrame = Player.Character.HumanoidRootPart.CFrame:ToObjectSpace(spinPart.CFrame)
+        Player.Character.HumanoidRootPart.CFrame = CFrame.new(Player.Character.HumanoidRootPart.Position, relativeCFrame.LookVector + Player.Character.HumanoidRootPart.Position)
+
+        Camera.CameraSubject = Player.Character.HumanoidRootPart
+        Camera.CFrame = CFrame.new(Camera.CFrame.Position, Player.Character.HumanoidRootPart.Position)
+
+        wait()
+    end
+    spinPart:Destroy()
+    Camera.CameraSubject = oldCameraSubject
+end
+
+UIS.InputBegan:Connect(function(input, proc)
+    if input.KeyCode == _G.Keybind10 and not proc then
+        Spinning = not Spinning
+        if Spinning then
+            spinPlayer()
+        end
+    end
 end)
