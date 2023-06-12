@@ -74,6 +74,20 @@ b:Label("Y-Toggle = Spin",{
     
 }) 
 
+b:Label("ScrollClickHold = BallCam",{
+    TextSize = 15;
+    TextColor = Color3.fromRGB(255,255,255);
+    BgColor = Color3.fromRGB(69,69,69);
+    
+}) 
+
+b:Label("BallCam no work with spin",{
+    TextSize = 15;
+    TextColor = Color3.fromRGB(178, 242, 170);
+    BgColor = Color3.fromRGB(69,69,69);
+    
+}) 
+
 b:Button("Bypass OutOfBound",function()
     bypassBorderandBounds()
 end)
@@ -594,5 +608,79 @@ UIS.InputBegan:Connect(function(input, proc)
         if Spinning then
             spinPlayer()
         end
+    end
+end)
+
+--------------------------------------------------------------------
+
+local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
+local Workspace = game:GetService("Workspace")
+local UIS = game:GetService("UserInputService")
+
+_G.Keybind11 = Enum.UserInputType.MouseButton3
+
+local LP = Players.LocalPlayer
+local ballList = {}
+local BallCamera = nil
+local connection, stepConnection
+
+function updateBalls()
+    local newBallList = {}
+    for _, ball in pairs(Workspace:GetDescendants()) do
+        if ball.Name == "Basketball" and ball:IsA("Part") then
+            newBallList[#newBallList + 1] = ball
+        end
+    end
+    ballList = newBallList
+end
+
+function showBall()
+    stepConnection = RunService.RenderStepped:Connect(function()
+        local closestBall = nil
+        local closestDist = math.huge
+        for _, ball in pairs(ballList) do
+            local dist = (ball.Position - LP.Character.HumanoidRootPart.Position).Magnitude
+            if dist < closestDist then
+                closestDist = dist
+                closestBall = ball
+            end
+        end
+
+        if closestBall and BallCamera ~= closestBall then
+            BallCamera = closestBall
+            Workspace.CurrentCamera.CameraSubject = BallCamera
+        end
+    end)
+    
+    connection = RunService.Heartbeat:Connect(function()
+        updateBalls()
+    end)
+end
+
+function resetCamera()
+    if stepConnection then
+        stepConnection:Disconnect()
+        stepConnection = nil
+    end
+
+    if connection then
+        connection:Disconnect()
+        connection = nil
+    end
+
+    Workspace.CurrentCamera.CameraSubject = LP.Character.Humanoid
+    BallCamera = nil
+end
+
+UIS.InputBegan:Connect(function(input, proc)
+    if input.UserInputType == _G.Keybind11 and not proc then
+        showBall()
+    end
+end)
+
+UIS.InputEnded:Connect(function(input, proc)
+    if input.UserInputType == _G.Keybind11 and not proc then
+        resetCamera()
     end
 end)
