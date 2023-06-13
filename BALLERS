@@ -39,7 +39,7 @@ getgenv().autoDunk = false
 AutoDunk.MouseButton1Click:Connect(function()
     getgenv().autoDunk = not getgenv().autoDunk
     AutoDunk.BackgroundColor3 = getgenv().autoDunk and Color3.fromRGB(0, 255, 0) or Color3.fromRGB(255, 0, 0)
-    while task.wait() and getgenv().autoDunk do
+    while task.wait(0.5) and getgenv().autoDunk do
         game:GetService("ReplicatedStorage").Remotes.Dunk:FireServer()
     end
 end)
