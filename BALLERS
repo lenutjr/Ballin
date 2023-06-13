@@ -163,51 +163,30 @@ end)
 
 _G.Keybind3 = Enum.KeyCode.Q
 
-local LocalPlayer = game:GetService("Players").LocalPlayer
+local LP = game:GetService("Players").LocalPlayer
 local UIS = game:GetService("UserInputService")
-local oldCFrame
 
-local function tpBall()
-    local closestBall = nil
-    local shortestDistance = math.huge
-
-    for _, ball in pairs(game:GetService("Workspace"):GetDescendants()) do
-        if ball.Name == "Basketball" and ball:IsA("Part") then
-            local playerValue = ball:FindFirstChild("player")
-            if playerValue and playerValue:IsA("StringValue") and playerValue.Value == "" then
-                local distance = (LocalPlayer.Character.HumanoidRootPart.Position - ball.Position).magnitude
-                if distance < shortestDistance then
-                    closestBall = ball
-                    shortestDistance = distance
-                end
-            end
-        end
-    end
-
-    if closestBall then
-        oldCFrame = LocalPlayer.Character.HumanoidRootPart.CFrame
-        LocalPlayer.Character.Humanoid.PlatformStand = true
-        LocalPlayer.Character.HumanoidRootPart.CFrame = closestBall.CFrame + Vector3.new(0,3,1)
-        task.wait(0.1)
-        LocalPlayer.Character.HumanoidRootPart.CFrame = closestBall.CFrame + Vector3.new(0,3,0)
-        task.wait(0.1)
-        LocalPlayer.Character.HumanoidRootPart.CFrame = closestBall.CFrame + Vector3.new(0,3,-1)
-        task.wait(0.3)
-        LocalPlayer.Character.HumanoidRootPart.CFrame = oldCFrame
-        task.wait(0.1)
-        LocalPlayer.Character.Humanoid.PlatformStand = false
-    end
+function getClosestBall()
+	local closestDistance = math.huge
+	local closestBall = nil
+	for _, ball in pairs(workspace:GetDescendants()) do
+		if ball.Name == "Basketball" and ball:isA("Part") then
+			local distance = (LP.Character.HumanoidRootPart.Position - ball.Position).Magnitude
+			if distance < closestDistance then
+				closestDistance = distance
+				closestBall = ball
+			end
+		end
+	end
+	if closestBall then
+		closestBall.CFrame = LP.Character.HumanoidRootPart.CFrame
+	end
 end
 
 UIS.InputBegan:Connect(function(input, proc)
-    if input.KeyCode == _G.Keybind3 and not proc then
-        tpBall()
-    end
-end)
-
-UIS.InputEnded:Connect(function(input, proc)
-    if input.KeyCode == _G.Keybind3 and not proc then
-    end
+	if input.KeyCode == _G.Keybind3 and not proc then
+		getClosestBall()
+	end
 end)
 
 -----------------------------------------------------------------------------
