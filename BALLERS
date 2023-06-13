@@ -14,7 +14,7 @@ Frame.Size = UDim2.new(0, 165, 0, 80)
 
 AutoDunk.Name = "Auto Dunk"
 AutoDunk.Parent = Frame
-AutoDunk.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- default red
+AutoDunk.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 AutoDunk.BorderColor3 = Color3.fromRGB(0, 0, 0)
 AutoDunk.Size = UDim2.new(0, 165, 0, 38)
 AutoDunk.Font = Enum.Font.SourceSans
@@ -24,7 +24,7 @@ AutoDunk.TextSize = 14.000
 
 AutoLayup.Name = "Auto Layup"
 AutoLayup.Parent = Frame
-AutoLayup.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- default red
+AutoLayup.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 AutoLayup.BorderColor3 = Color3.fromRGB(0, 0, 0)
 AutoLayup.Position = UDim2.new(0, 0, 0.537500024, 0)
 AutoLayup.Size = UDim2.new(0, 165, 0, 38)
@@ -142,6 +142,10 @@ b:Label("BallCam no work with spin",{
     
 }) 
 
+b:Button("Enlarge Hands",function()
+    handModifier()
+end)
+
 b:Button("Bypass OutOfBound",function()
     bypassBorderandBounds()
 end)
@@ -158,6 +162,11 @@ function bypassBorderandBounds()
             borders:Destroy()
         end
     end
+end
+
+function handModifier()
+game.Players.LocalPlayer.Character.LeftHand.Size = Vector3.new(1, 10.305229187011719, 0.6535588502883911)
+game.Players.LocalPlayer.Character.RightHand.Size = Vector3.new(1, 10.305229187011719, 0.6535588502883911)
 end
 ---------------------------------------------------------------------------
 
